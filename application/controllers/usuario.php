@@ -7,12 +7,13 @@ class Usuario extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array("usuario", "comentario", "imagem"));
+        $this->load->model(array("usuario_model","imagem_model"));
         date_default_timezone_set("America/Sao_paulo");
     }
 
     public function index() {
         $data['op'] = "salvar";
+        $data['usuarios'] = $this->usuario_model->buscarTodos();
         $this->load->view("usuario/crud",$data);
     }
 
@@ -28,7 +29,7 @@ class Usuario extends CI_Controller {
             "created_at" =>date("Y-m-d H:i:s"),
             "email" =>strip_tags($this->input->post("email"))
         );
-        $this->usuario->salvar($usuario);
+        $this->usuario_model->salvar($usuario);
 //        $usuario->setNome(strip_tags($this->input->post("nome")));
 //        $usuario->setCpf(strip_tags($this->input->post("cpf")));
 //        $usuario->setEndereco(strip_tags($this->input->post("endereco")));
@@ -49,7 +50,8 @@ class Usuario extends CI_Controller {
 
     public function editar() {
         $id = $this->uri->segment(3);
-        $data["usuario"] = $this->usuario->buscarId($id);
+        $data["usuario"] = $this->usuario_model->buscarId($id);
+        $data['usuarios'] = $this->usuario_model->buscarTodos();
         $data['op'] = 'atualizar';
         $this->load->view('usuario/crud', $data);
     }
@@ -67,7 +69,7 @@ class Usuario extends CI_Controller {
             "updated_at" =>date("Y-m-d H:i:s"),
             "email" =>strip_tags($this->input->post("email"))
         );
-        $this->usuario->salvar($usuario);
+        $this->usuario_model->salvar($usuario);
         //implementar upload imagem
         $this->session->set_userdata("successmsg","Usuário atulizado com sucesso!");
         
@@ -76,9 +78,9 @@ class Usuario extends CI_Controller {
     
     public function excluir(){
         $id = $this->uri->segment(3);
-        $usuario = $this->usuario->buscarId($id);
+        $usuario = $this->usuario_model->buscarId($id);
         try {
-            $this->usuario->apagar($id);
+            $this->usuario_model->apagar($id);
             $this->session->set_userdata("successmsg","Usuário excluído com sucesso!");
         } catch (Exception $exc) {
             $this->session->set_userdata("errormsg","Usuário não pode ser excluído!");

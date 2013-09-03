@@ -30,7 +30,7 @@ class Usuario extends CI_Controller {
         if ($isUploaded) {
             $upload = $this->upload->data();
             $name = array_sum(explode('.', microtime(true)));
-            $patern = dirname(__FILE__) . "../../../foto/";
+            $patern = dirname(__FILE__) . "../../../foto/usuario";
             $this->load->library("wideimage/lib/WideImage");
             $image = WideImage::load($upload['full_path']);
             if ($image->getWidth() > $image->getHeight()) {
@@ -52,7 +52,7 @@ class Usuario extends CI_Controller {
                 "celular" => strip_tags($this->input->post("celular")),
                 "created_at" => date("Y-m-d H:i:s"),
                 "email" => strip_tags($this->input->post("email")),
-                'url_img' => "foto/" . $name . $upload["file_ext"]
+                'url_img' => "foto/usuario" . $name . $upload["file_ext"]
             );
         } else {
             $usuario = array(
@@ -100,7 +100,7 @@ class Usuario extends CI_Controller {
             }
             $upload = $this->upload->data();
             $name = array_sum(explode('.', microtime(true)));
-            $patern = dirname(__FILE__) . "../../../foto/";
+            $patern = dirname(__FILE__) . "../../../foto/usuario";
             $this->load->library("wideimage/lib/WideImage");
             $image = WideImage::load($upload['full_path']);
             if ($image->getWidth() > $image->getHeight()) {
@@ -122,7 +122,7 @@ class Usuario extends CI_Controller {
                 "celular" => strip_tags($this->input->post("celular")),
                 "updated_at" => date("Y-m-d H:i:s"),
                 "email" => strip_tags($this->input->post("email")),
-                'url_img' => "foto/" . $name . $upload["file_ext"]
+                'url_img' => "foto/usuario" . $name . $upload["file_ext"]
             );
         } else {
             $usuario = array(
@@ -148,6 +148,7 @@ class Usuario extends CI_Controller {
         $usuario = $this->usuario_model->buscarId($id);
         try {
             $this->usuario_model->apagar($id);
+            unlink($usuario->url_img);
             $this->session->set_userdata("successmsg", "Usuário excluído com sucesso!");
         } catch (Exception $exc) {
             $this->session->set_userdata("errormsg", "Usuário não pode ser excluído!");

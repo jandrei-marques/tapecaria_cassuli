@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sigamed Manager</title>        
+        <title>Tapeçaria Cassuli - Admin</title>        
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/style.css">
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/jquery-ui-1.10.2.custom.min.css">
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-1.9.0.min.js"></script>
@@ -57,11 +57,11 @@
             <div style="height: 60px;" title="Área Administrativa">
                 <div id="menu">
                     <ul>
-                        <li><a href="<?= base_url() ?>usuario">Usuários Trend</a></li>
-                        <li><a href="<?= base_url() ?>planosigamed">Planos SIGAMED</a></li>
-                        <li><a href="<?= base_url() ?>planosms">Planos SMS</a></li>
-                        <li><a href="<?= base_url() ?>conta">Clientes</a></li>
-                        <li><a href="<?= base_url() ?>vencimentos">Venc. do dia</a></li>
+                        <li><a href="<?= base_url() ?>usuario">Usuários</a></li>
+                        <li><a href="<?= base_url() ?>fornecedor">Fornecedores</a></li>
+                        <li><a href="<?= base_url() ?>mostruario">Mostruário</a></li>
+                        <li><a href="<?= base_url() ?>produto">Produtos</a></li>
+                        <!--<li><a href="<?= base_url() ?>vencimentos">Venc. do dia</a></li>-->
                         <li><a href="<?= base_url() ?>login/logout">Logout</a></li>
                     </ul>
                 </div>

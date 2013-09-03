@@ -1,0 +1,104 @@
+/* 
+    Document   : style
+    Created on : 15/03/2013, 15:42:13
+    Author     : vander
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+*{    font-family: Tahoma, sans-serif;}
+img{border: none;}
+#menu ul { padding:0px; margin:0px; float: left; width: 100%; background-color:#EDEDED;list-style:none;}
+#menu ul li { display: inline; }
+#menu ul li a {padding: 2px 10px;float:left;  /* visual do link */  background-color:#EDEDED; color: #333; text-decoration: none;border-bottom:3px solid #EDEDED;}
+#menu ul li a:hover {background-color:#D6D6D6; color: #6D6D6D; border-bottom:3px solid #EA0000;}
+
+.container{ width: 100%;}
+.container h3{text-align: center;font-family: Tahoma, sans-serif; font-size: 17px;}
+.fieldCad{ border-radius: 5px 5px 5px 5px; border-color: #EFEFEF; width: 30%; float: left;}
+.fieldCad table {width: 100%;}
+.fieldCad input:focus {background-color: #FFF8DC;}
+.fieldCad label{ font-size: 13px; font-weight: bold; letter-spacing: 1px;}
+.fieldCad input[type=text] { font-size: 12px; height: 24px; width: 96%;}
+.fieldCad input[type=number] { font-size: 12px; height: 24px; width: 96%;}
+.fieldCad input[type=password] { font-size: 12px; height: 24px; width: 96%;}
+.fieldCad input[type=url] { font-size: 12px; height: 24px; width: 96%;}
+.fieldCad input[type=email] { font-size: 12px; height: 24px; width: 96%;}
+.fieldCad input[type=date] { font-size: 12px; height: 24px; width: 96%;}
+.fieldCad select {font-size: 12px; height: 24px; width: 96%;}
+.fieldCad textarea {font-size: 12px; height: 120px; width: 96%; resize: none}
+.fieldCad input[name='weight'] {font-size: 12px; height: 24px; width: 92%;}
+.fieldCad input[name='value'] {font-size: 12px; height: 24px; width: 92%;}
+.fieldCad .btnVariation {font-size: 14px;}
+.fieldCad button {font-size: 14px;}
+legend{font-weight: bold; font-size: 16px; }
+.fieldList{ border-radius: 5px 5px 5px 5px; border-color: #EFEFEF; width: 62%; margin-left: 1%;float: left;}
+.listAll{width: 100%; border-collapse: collapse;}
+.listAll thead th{background-color: #EFEFEF; font-size: 14px; letter-spacing: 1px; height: 25px;}
+.listAll tbody tr {background-color: white; border-bottom:  1px dotted #EFEFEF; height: 33px; font-size: 12px;}
+.listAll tbody tr:hover{background-color: #FFF8DC; border-left: 1px solid #EFEFEF; padding-left: 2px; text-shadow: 0 0  3px #ccc; font-weight: bold; cursor: pointer;}
+.configAlert{font-size: 14px; font-family: Tahoma, sans-serif; padding: 0.3%;}
+.posicionaAlert{float:left; margin-right: 10px;}
+.dialog-form{font-family: Tahoma, sans-serif; font-size: 12px;font-weight: bold;}
+.dialog-form input[type=text] { font-size: 12px; height: 24px; width: 96%;}
+.dialog-form input[type=date] { font-size: 12px; height: 24px; width: 96%;}
+.dialog-form textarea {font-size: 12px; height: 120px; width: 96%; resize: none}
+.dialog-form table{width: 100%;}
+.dialog-form table tr{height: 30px;}
+.dialog-form span{font-size: 16px;}
+.dialog-form span[name='valorParcela']{color: green;}
+.dialog-form span[name='carenciaParcela']{color: blue;}
+.dialog-form span[name='vencimentoParcela']{color: blue;}
+.dialog-form span[name='valorParcelaC']{color: green;}
+.dialog-form span[name='carenciaParcelaC']{color: blue;}
+.dialog-form span[name='vencimentoParcelaC']{color: blue;}
+.dialog-form span{font-size: 16px;}
+.dialog-form-sms{font-family: Tahoma, sans-serif; font-size: 12px;font-weight: bold;}
+.dialog-form-sms input[type=text] { font-size: 12px; height: 24px; width: 96%;}
+.dialog-form-sms input[type=date] { font-size: 12px; height: 24px; width: 96%;}
+.dialog-form-sms select {font-size: 12px; height: 24px; width: 96%;}
+.dialog-form-sms span[name='quantidadeSms']{color: blue;}
+.dialog-form-sms span[name='precoTotal']{color: green;}
+.dialog-form-sms span[name='precoSms']{color: green;}
+.dialog-form-sms textarea {font-size: 12px; height: 120px; width: 96%; resize: none}
+.dialog-form-sms table{width: 100%;}
+.dialog-form-sms table tr{height: 30px;}
+.dialog-form-sms span{font-size: 16px;}
+#detalhesconta table label{font-size: 14px; font-family: Tahoma, sans-serif;}
+
+
+.texto {
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+    text-align: justify;
+    padding-right: 15px;
+    padding-left: 15px;
+    line-height: 18px;
+    margin-top: 10px;
+}
+
+#clausulas{
+    font-family: Tahoma, sans-serif;
+    font-size: 14px;
+    margin-top: 12px;
+    margin-bottom: 2px;
+    font-weight: bold;
+    line-height: 16px;
+}
+.pclausula{
+    margin-left: 30px;
+    margin-right: 20px;
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+    text-align: justify;
+}
+.psclausula{
+    margin-left: 60px;
+    margin-right: 20px;
+    font-family: Tahoma, sans-serif;
+    font-size: 12px;
+    text-align: justify;
+}

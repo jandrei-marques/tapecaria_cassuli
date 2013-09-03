@@ -87,9 +87,9 @@ class Usuario extends CI_Controller {
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
         $this->load->library('upload', $config);
-        $isUploaded = true;
+        $isUploaded = TRUE;
         if (!$this->upload->do_upload()) {
-            $isUploaded = false;
+            $isUploaded = FALSE;
             $this->session->set_userdata('errorsmsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
             redirect('/usuario');
         }
@@ -139,7 +139,7 @@ class Usuario extends CI_Controller {
         }
 
         $this->usuario_model->atualizar($id,$usuario);
-        $this->session->set_userdata("successmsg", "Usuário atulizado com sucesso!");
+        $this->session->set_userdata("successmsg", "Usuário atualizado com sucesso!");
         redirect("/usuario");
     }
 

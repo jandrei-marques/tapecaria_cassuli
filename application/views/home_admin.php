@@ -7,7 +7,6 @@
         <link rel="stylesheet" type="text/css" href="<?= base_url() ?>css/jquery-ui-1.10.2.custom.min.css">
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-ui-1.10.2.custom.min.js"></script>
-        <script type="text/javascript" src="<?= base_url() ?>js/jquery-maskmoney.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/utils.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/jquery.noty.js"></script>

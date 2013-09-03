@@ -1,18 +1,13 @@
 <?=$this->load->view('home_admin');?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
+<section class='container'>
         <?
         echo form_open("fornecedor/" . $op);
         if (isset($fornecedor)) {
             echo form_hidden("id", $fornecedor->id);
         }
         ?>
-        <fieldset>
+        <fieldset class="ui-widget-content ui-corner-all fieldCad">
             <legend>Cadastro de fornecedor</legend>
             <table>
                 <tr>
@@ -55,24 +50,22 @@
                         <input type="text" name="descricao" value="<?= isset($fornecedor) ? $fornecedor->descricao : '' ?>" required />
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" name="action" value="Salvar">
-                    </td>
-                </tr>
             </table>
+            <br />
+            <hr>
+            <button type="submit" class="btnSave">Salvar</button>
         </fieldset>
-        <fieldset>
+    <fieldset class="fieldList">
             <legend>Fornecedores Cadastrados</legend>
             <?
             if (isset($fornecedores) && count($fornecedores) > 0) {
                 ?>
-                <table>
+                <table class="listAll">
                     <thead>
-                    <th>Nome</th>
-                    <th>Nome Fantasia</th>
-                    <th>Endereço</th>
-                    <th>&nbsp;</th>
+                    <th style="text-align: left; width: 30%;">Nome</th>
+                    <th style="text-align: left; width: 30%;">Nome Fantasia</th>
+                    <th style="text-align: left; width: 30%;">Endereço</th>
+                    <th style="text-align: left; width: 10%;">&nbsp;</th>
                     </thead>
                     <tbody>
                         <? foreach ($fornecedores as $fornece) { ?>
@@ -89,5 +82,4 @@
                 </table>
             <? } ?>
         </fieldset>
-    </body>
-</html>
+</section>

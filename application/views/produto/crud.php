@@ -1,18 +1,13 @@
 <?=$this->load->view('home_admin');?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
+<section class="container">
         <?
         echo form_open_multipart("produto/" . $op);
         if (isset($produto)) {
             echo form_hidden("id", $produto->id);
         }
         ?>
-        <fieldset>
+        <fieldset class="ui-widget-content ui-corner-all fieldCad">
             <legend>Cadastro de Produto</legend>
             <table>
                 <tr>
@@ -47,24 +42,23 @@
                         <?=  form_dropdown('fornecedor',$fornecedores, isset($produto) ? $produto->id_fornecedor : '');?>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" name="action" value="Salvar">
-                    </td>
-                </tr>
             </table>
+            <br />
+            <hr>
+            <button type="submit" class="btnSave">Salvar</button>
         </fieldset>
-        <fieldset>
+    <fieldset class="fieldList">
             <legend>Produtos Cadastrados</legend>
             <?
             if (isset($produtos) && count($produtos) > 0) {
                 ?>
-                <table>
+            <table class="listAll">
                     <thead>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                    <th>&nbsp;</th>
+                    <th style="text-align: left; width: 30%;">Nome</th>
+                    <th style="text-align: left; width: 30%;">Descrição</th>
+                    <th style="text-align: left; width: 20%;">Valor</th>
+                    <th style="text-align: left; width: 10%;">Imagem</th>
+                    <th style="text-align: left; width: 10%;">&nbsp;</th>
                     </thead>
                     <tbody>
                         <? foreach ($produtos as $pro) { ?>
@@ -82,5 +76,4 @@
                 </table>
             <? } ?>
         </fieldset>
-    </body>
-</html>
+</section>

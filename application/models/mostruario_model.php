@@ -23,7 +23,7 @@ class Mostruario_model extends CI_Model {
     }
 
     public function buscarTodos() {
-        $this->db->order_by("nome", "asc");
+        $this->db->order_by("descricao", "asc");
         return $this->db->get($this->table)->result();
     }
 

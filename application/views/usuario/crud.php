@@ -18,37 +18,93 @@ and open the template in the editor.
         ?>
         <fieldset>
             <legend>Cadastro de Usuario</legend>
-            <p>
-                <label>Nome: <input name="nome" type="text" value="<?= isset($usuario) ? $usuario->nome : '' ?>" required></label>
-            </p>
-            <p>
-                <label>Cpf: <input name="cpf" type="text" value="<?= isset($usuario) ? $usuario->cpf : '' ?>" required></label>
-            </p>
-            <p>
-                <label>E-mail: <input type="email" name="email" value="<?= isset($usuario) ? $usuario->email : '' ?>" /></label>
-            </p>
-            <p>
-                <label>Telefone: <input type="tel" name="telefone" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" /></label>
-            </p>
-            <p>
-                <label>Celular: <input type="tel" name="celular" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" /></label>
-            </p>
-            <p>
-                <label>Endereço: <input type="text" name="endereco" value="<?= isset($usuario) ? $usuario->endereco : '' ?>" required /></label>
-            </p>
-            <p>
-                <label>Login: <input type="text" name="login" value="<?= isset($usuario) ? $usuario->login : '' ?>" required /></label>
-            </p>
-            <p>
-                <label>Senha: <input type="password" name="senha" value="" required /></label>
-            </p>
-            <p>
-                <label>Confirmação de Senha: <input type="password" name="confirmacaosenha" value="" required /></label>
-            </p>
-            <p>
-                <label>Foto: <input type="file" name="userfile" accept="image/*"/></label>
-            </p>
-            <input type="submit" name="action" value="Salvar">
+            <table
+                <tr>
+                    <td>
+                        <label>Nome: </label>
+                    </td>
+                    <td>
+                        <input name="nome" type="text" value="<?= isset($usuario) ? $usuario->nome : '' ?>" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Cpf:</label>
+                    </td>
+                    <td>
+                        <input name="cpf" type="text" value="<?= isset($usuario) ? $usuario->cpf : '' ?>" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>E-mail:</label>
+                    </td>
+                    <td>
+                        <input type="email" name="email" value="<?= isset($usuario) ? $usuario->email : '' ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Telefone:</label>
+                    </td>
+                    <td>
+                        <input type="tel" name="telefone" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Celular: </label>
+                    </td>
+                    <td>
+                        <input type="tel" name="celular" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Endereço:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="endereco" value="<?= isset($usuario) ? $usuario->endereco : '' ?>" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Login: </label>
+                    </td>
+                    <td>
+                        <input type="text" name="login" value="<?= isset($usuario) ? $usuario->login : '' ?>" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Senha:</label>
+                    </td>
+                    <td>
+                        <input type="password" name="senha" value="" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Confirmação de Senha:</label>
+                    </td>
+                    <td>
+                        <input type="password" name="confirmacaosenha" value="" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Foto:</label>
+                    </td>
+                    <td>
+                        <input type="file" name="userfile" accept="image/*"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="action" value="Salvar">
+                    </td>
+                </tr>
+            </table>
         </fieldset>
         <fieldset>
             <legend>Usuarios Cadastrados</legend>
@@ -60,18 +116,27 @@ and open the template in the editor.
                     <th>Nome</th>
                     <th>Cpf</th>
                     <th>Endereço</th>
+                    <th>Foto</th>
                     <th>&nbsp;</th>
                     </thead>
                     <tbody>
                         <? foreach ($usuarios as $user) { ?>
-                        <tr>
-                            <td><?=$user->nome?></td>
-                            <td><?=$user->cpf?></td>
-                            <td><?=$user->endereco?></td>
-                            <td><a href="<?= base_url()?>usuario/editar/<?=$user->id?>">Editar</a>&nbsp;
-                                <a href="<?= base_url()?>usuario/excluir/<?=$user->id?>">Excluir</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $user->nome ?></td>
+                                <td><?= $user->cpf ?></td>
+                                <td><?= $user->endereco ?></td>
+                                <td><? if (!empty($user->url_img)) { ?>
+                                        <img src="<?= base_url() . $user->url_img ?>"/> 
+                                        <?
+                                    } else {
+                                        echo "&nbsp;";
+                                    }
+                                    ?>
+                                </td>
+                                <td><a href="<?= base_url() ?>usuario/editar/<?= $user->id ?>">Editar</a>&nbsp;
+                                    <a href="<?= base_url() ?>usuario/excluir/<?= $user->id ?>">Excluir</a>
+                                </td>
+                            </tr>
                         <? } ?>
                     </tbody>
                 </table>

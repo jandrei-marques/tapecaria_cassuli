@@ -3,6 +3,8 @@
 class Imagem_model extends CI_Model {
 
     private $table = 'imagem';
+    private $table2 = 'imagem_produto';
+    private $table3 = 'imagem_mostruario';
 
     public function __construct() {
         parent::__construct();
@@ -32,5 +34,14 @@ class Imagem_model extends CI_Model {
         return $this->db->limit(1)->get($this->table)->row();
     }
 
-}
+    public function buscarImgProduto($id_produto) {
+        $this->db->where('id_produto', $id_produto);
+        return $this->db->get($this->table2)->result();
+    }
 
+    public function buscarImgMostruario($id_mostruario) {
+        $this->db->where('id_mostruario', $id_mostruario);
+        return $this->db->get($this->table3)->result();
+    }
+
+}

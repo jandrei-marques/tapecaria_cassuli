@@ -63,6 +63,7 @@
             <hr>
             <button type="submit" class="btnSave">Salvar</button>
         </fieldset>
+        <?=  form_close()?>
         <fieldset  class="fieldList">
             <legend>Mostruarios Cadastrados</legend>
             <?
@@ -71,8 +72,9 @@
                 <table class="listAll">
                     <thead>
                     <th style="text-align: left; width: 40%;">Descrição</th>
-                    <th style="text-align: left; width: 20%;">Valor</th>
+                    <th style="text-align: left; width: 10%;">Valor</th>
                     <th style="text-align: left; width: 30%;">Observação</th>
+                    <th style="text-align: left; width: 10%;">Imagem</th>
                     <th style="text-align: left; width: 10%;">&nbsp;</th>
                     </thead>
                     <tbody>
@@ -81,6 +83,7 @@
                                 <td><?= $mostru->descricao ?></td>
                                 <td><?= $mostru->vlr_unit ?></td>
                                 <td><?= $mostru->observacao ?></td>
+                                <td><a href="#" onclick="javascript: window.open('<?= base_url() ?>mostruario/add_imagem/<?= $mostru->id ?>', 'janela', 'width=1200, height=630, top=20, left=10, scrollbars=yes, status=no, toolbar=no, location=hide, directories=no, menubar=no, resizable=no, fullscreen=no, modal=yes');">Add Imagem</a>&nbsp;</td>
                                 <td><a href="<?= base_url() ?>mostruario/editar/<?= $mostru->id ?>">Editar</a>&nbsp;
                                     <a href="<?= base_url() ?>mostruario/excluir/<?= $mostru->id ?>">Excluir</a>
                                 </td>

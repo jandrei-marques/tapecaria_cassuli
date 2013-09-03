@@ -47,6 +47,7 @@
             <hr>
             <button type="submit" class="btnSave">Salvar</button>
         </fieldset>
+    <?=  form_close()?>
     <fieldset class="fieldList">
             <legend>Produtos Cadastrados</legend>
             <?
@@ -66,7 +67,7 @@
                                 <td><?= $pro->nome ?></td>
                                 <td><?= $pro->descricao ?></td>
                                 <td><?= $pro->valor ?></td>
-                                <td><a href="<?= base_url() ?>produto/add_imagem/<?= $pro->id ?>">Add Imagem</a>&nbsp;
+                                <td><a href="#" onclick="javascript: window.open('<?= base_url() ?>produto/add_imagem/<?= $pro->id ?>', 'janela', 'width=1200, height=630, top=20, left=10, scrollbars=yes, status=no, toolbar=no, location=hide, directories=no, menubar=no, resizable=no, fullscreen=no, modal=yes');">Add Imagem</a>&nbsp;
                                 <td><a href="<?= base_url() ?>produto/editar/<?= $pro->id ?>">Editar</a>&nbsp;
                                     <a href="<?= base_url() ?>produto/excluir/<?= $pro->id ?>">Excluir</a>
                                 </td>

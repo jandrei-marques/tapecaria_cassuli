@@ -4,7 +4,8 @@ class Produto extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('produto_model', 'usuario_model', 'comentario_model', 'fornecedor_model','imagem_model'));
+        $this->load->model(array('produto_model', 'usuario_model', 'comentario_model', 'fornecedor_model', 'imagem_model'));
+        date_default_timezone_set('America/Sao_paulo');
     }
 
     public function index() {
@@ -26,7 +27,8 @@ class Produto extends CI_Controller {
             'nome' => $this->input->post('nome'),
             'descricao' => $this->input->post('descricao'),
             'valor' => $this->input->post('valor'),
-            'id_fornecedor' => $this->input->post('fornecedor'),
+            'id_fornecedor' => $this->input->post('fornecedor') != 0 ? $this->input->post('fornecedor') : null,
+            'created_at' => date("Y-m-d H:i:s")
         );
         $this->produto_model->salvar($produto);
         redirect('/produto');
@@ -54,7 +56,8 @@ class Produto extends CI_Controller {
             'nome' => $this->input->post('nome'),
             'descricao' => $this->input->post('descricao'),
             'valor' => $this->input->post('valor'),
-            'id_fornecedor' => $this->input->post('fornecedor')
+            'id_fornecedor' => $this->input->post('fornecedor') != 0 ? $this->input->post('fornecedor') : null,
+            'updated_at' => date("Y-m-d H:i:s")
         );
         $this->produto_model->atualizar($id, $produto);
         redirect('/produto');
@@ -65,11 +68,131 @@ class Produto extends CI_Controller {
         $this->produto_model->apagar($id);
         redirect('/produto');
     }
-    
-    public function add_imagem(){
+
+    public function add_imagem() {
         $id_produto = $this->uri->segment(3);
-        $produto = $this->produto_model->buscarId($id_produto);
-        
+//        $produto = $this->produto_model->buscarId($id_produto);
+        $imagens = $this->imagem_model->buscarImgProduto($id_produto);
+        $data['produto'] = $id_produto;
+        $data['imagens'] = $imagens;
+        $data['op'] = 'save_img';
+        $this->load->view('produto/add_image', $data);
+    }
+
+    public function save_img() {
+        $config['upload_path'] = 'uploads/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+
+        $this->load->library('upload', $config);
+        $isUploaded = true;
+        $id_pro = strip_tags($this->input->post('id_produto'));
+        if (!$this->upload->do_upload()) {
+            $isUploaded = false;
+            $this->session->set_userdata('errorsmsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
+            redirect('/usuario');
+        }
+        if ($isUploaded) {
+            $upload = $this->upload->data();
+            $name = array_sum(explode('.', microtime(true)));
+            $patern = dirname(__FILE__) . "../../../foto/produto/";
+            $this->load->library("wideimage/lib/WideImage");
+            $image = WideImage::load($upload['full_path']);
+            if ($image->getWidth() > $image->getHeight()) {
+                $image = $image->resize(null, 600);
+            } else {
+                $image = $image->resize(800, null);
+            }
+//            $image = $image->crop("center", "middle", 800, 600);
+            $image->saveToFile($patern . $name .
+                    $upload["file_ext"]);
+
+            $img = array(
+                "descricao" => strip_tags($this->input->post("descricao")),
+                'url' => "foto/produto/" . $name . $upload["file_ext"],
+                'created_at' => date('Y-m-d H:i:s')
+            );
+            $this->imagem_model->salvar($img);
+            $id_img = $this->db->insert_id();
+            $img_pro = array(
+                'id_imagem' => $id_img,
+                'id_produto' => $id_pro
+            );
+            $this->imagem_model->salvarImgProduto($img_pro);
+            $this->session->set_userdata("successmsg", "Imagem cadastrada com sucesso!");
+        }
+        redirect("/produto/add_imagem/$id_pro");
+    }
+
+    public function editar_img() {
+        $id = $this->uri->segment(3);
+        $img_pro = $this->imagem_model->buscarProImg($id);
+        $data['produto'] = $img_pro->id_produto;
+        $data['imagens'] = $this->imagem_model->buscarImgProduto($img_pro->id_produto);
+        $data['imagem'] = $img_pro;
+        $data['op'] = 'atualizar_img';
+        $this->load->view('produto/add_image', $data);
+    }
+
+    public function atualizar_img() {
+        $config['upload_path'] = 'uploads/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+
+        $this->load->library('upload', $config);
+        $isUploaded = true;
+        $id_pro = strip_tags($this->input->post('id_produto'));
+        $id_img = strip_tags($this->input->post('id_imagem'));
+        if (!$this->upload->do_upload()) {
+            $isUploaded = false;
+//            $this->session->set_userdata('errormsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
+//            redirect("/produto/add_imagem/$id_pro");
+        }
+        if ($isUploaded) {
+            $image = $this->imagem_model->buscarId($id_img);
+            unlink($image->url);
+            $upload = $this->upload->data();
+            $name = array_sum(explode('.', microtime(true)));
+            $patern = dirname(__FILE__) . "../../../foto/produto/";
+            $this->load->library("wideimage/lib/WideImage");
+            $image = WideImage::load($upload['full_path']);
+            if ($image->getWidth() > $image->getHeight()) {
+                $image = $image->resize(null, 600);
+            } else {
+                $image = $image->resize(800, null);
+            }
+            $image = $image->crop("center", "middle", 800, 600);
+            $image->saveToFile($patern . $name .
+                    $upload["file_ext"]);
+
+
+            $img = array(
+                "descricao" => strip_tags($this->input->post("descricao")),
+                'url' => "foto/produto/" . $name . $upload["file_ext"],
+                'updated_at' => date('Y-m-d H:i:s')
+            );
+            $this->imagem_model->atualizar($id_img, $img);
+            $this->session->set_userdata("successmsg", "Imagem cadastrada com sucesso!");
+        } else {
+            $img = array(
+                "descricao" => strip_tags($this->input->post("descricao")),
+                'updated_at' => date('Y-m-d H:i:s')
+            );
+            $this->imagem_model->atualizar($id_img, $img);
+            $this->session->set_userdata("successmsg", "Imagem cadastrada com sucesso!");
+        }
+        redirect("/produto/add_imagem/$id_pro");
+    }
+
+    public function excluir_img() {
+        $id_img = $this->uri->segment(3);
+        $imagem = $this->imagem_model->buscarProImg($id_img);
+        try {
+            $this->imagem_model->excluirImgPro($id_img);
+            unlink($imagem->url);
+            $this->session->set_userdata('successmsg', 'Imagem excluída com sucesso!');
+        } catch (Exception $ex) {
+            $this->session->set_userdata('successmsg', 'Ocorreu um erro ao excluír a imagem!');
+        }
+        redirect("/produto/add_imagem/$imagem->id_produto");
     }
 
 }

@@ -55,6 +55,7 @@
             <hr>
             <button type="submit" class="btnSave">Salvar</button>
         </fieldset>
+        <?=  form_close()?>
     <fieldset class="fieldList">
             <legend>Fornecedores Cadastrados</legend>
             <?

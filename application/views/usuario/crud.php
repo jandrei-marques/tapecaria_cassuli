@@ -95,6 +95,7 @@
         <hr>
         <button type="submit" class="btnSave">Salvar</button>
     </fieldset>
+    <?= form_close() ?>
     <fieldset class="fieldList">
         <legend>Usuarios Cadastrados</legend>
         <?

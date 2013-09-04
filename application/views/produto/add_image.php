@@ -97,7 +97,7 @@
                     <? foreach ($imagens as $img) { ?>
                         <tr>
                             <td><?= $img->descricao ?></td>
-                            <td><img width="100px" height="100px" src="<?= base_url() . $img->url ?>"></td>
+                            <td><img width="150px" height="100px" src="<?= base_url() . $img->url ?>"></td>
                             <td><a href="<?= base_url() ?>produto/editar_img/<?= $img->id_imagem ?>">Editar</a>&nbsp;
                                 <a href="<?= base_url() ?>produto/excluir_img/<?= $img->id_imagem ?>">Excluir</a>
                             </td>

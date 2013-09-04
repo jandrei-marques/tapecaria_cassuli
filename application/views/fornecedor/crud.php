@@ -31,7 +31,7 @@
                         <label>Cnpj: </label>
                     </td>
                     <td>
-                        <input type="text" name="cnpj" value="<?= isset($fornecedor) ? $fornecedor->cnpj : '' ?>" required />
+                        <input type="text" name="cnpj" id="cnpj" value="<?= isset($fornecedor) ? $fornecedor->cnpj : '' ?>" required />
                     </td>
                 </tr>
                 <tr>

@@ -1,62 +1,79 @@
 <?php
 
-class Mostruario extends CI_Controller{
-    
+class Mostruario extends CI_Controller {
+
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('mostruario_model','usuario_model','imagem_model'));
+        $this->load->model(array('mostruario_model', 'usuario_model', 'imagem_model','current_user'));
         date_default_timezone_set('America/Sao_paulo');
+        if(!$this->current_user->isAdmin()){
+            redirect('/login');
+        }
     }
-    
-    public function index(){
+
+    public function index() {
         $data['op'] = 'salvar';
         $data['mostruarios'] = $this->mostruario_model->buscarTodos();
-        $this->load->view('mostruario/crud',$data);
+        $this->load->view('mostruario/crud', $data);
     }
-    
-    public function salvar(){
+
+    public function salvar() {
         $mostruario = array(
             'descricao' => strip_tags($this->input->post('descricao')),
-            'vlr_unit'=> strip_tags($this->input->post('vlr_unit')),
-            'un_medida'=> strip_tags($this->input->post('un_medida')),
-            'referencia'=>  strip_tags($this->input->post('referencia')),
+            'vlr_unit' => strip_tags($this->input->post('vlr_unit')),
+            'un_medida' => strip_tags($this->input->post('un_medida')),
+            'referencia' => strip_tags($this->input->post('referencia')),
             'tipo_material' => strip_tags($this->input->post('tipo_material')),
             'observacao' => strip_tags($this->input->post('observacao')),
             'created_at' => date("Y-m-d H:i:s")
         );
         $this->mostruario_model->salvar($mostruario);
-        $this->session->set_userdata('successmsg','Mostruário cadastrado com sucesso!');
+        $this->session->set_userdata('successmsg', 'Mostruário cadastrado com sucesso!');
         redirect('/mostruario');
     }
-    
-    public function editar(){
+
+    public function editar() {
         $id = $this->uri->segment(3);
         $data['mostruario'] = $this->mostruario_model->buscarId($id);
         $data['mostruarios'] = $this->mostruario_model->buscarTodos();
         $data['op'] = 'atualizar';
-        $this->load->view('mostruario/crud',$data);
+        $this->load->view('mostruario/crud', $data);
     }
-    
-    public function atualizar(){
+
+    public function atualizar() {
         $id = $this->input->post('id');
         $mostruario = array(
             'descricao' => strip_tags($this->input->post('descricao')),
-            'vlr_unit'=> strip_tags($this->input->post('vlr_unit')),
-            'un_medida'=> strip_tags($this->input->post('un_medida')),
-            'referencia'=>  strip_tags($this->input->post('referencia')),
+            'vlr_unit' => strip_tags($this->input->post('vlr_unit')),
+            'un_medida' => strip_tags($this->input->post('un_medida')),
+            'referencia' => strip_tags($this->input->post('referencia')),
             'tipo_material' => strip_tags($this->input->post('tipo_material')),
             'observacao' => strip_tags($this->input->post('observacao')),
             'updated_at' => date("Y-m-d H:i:s")
         );
-        $this->mostruario_model->atualizar($id,$mostruario);
-        $this->session->set_userdata('successmsg','Mostruário atualizado com sucesso!');
+        $this->mostruario_model->atualizar($id, $mostruario);
+        $this->session->set_userdata('successmsg', 'Mostruário atualizado com sucesso!');
         redirect('/mostruario');
     }
-    
-    public function excluir(){
+
+    public function excluir() {
         $id = $this->uri->segment(3);
-        
+        $images = $this->imagem_model->buscarImgMostruario($id);
+        try {
+            if (is_array($images)) {
+                foreach ($images as $img) {
+                    $this->imagem_model->excluirImgMos($img->id_imagem);
+                    unlink($img->url);
+                }
+            }
+            $this->mostruario_model->apagar($id);
+            $this->session->set_userdata('successmsg', 'Mostruario excluído com sucesso!');
+        } catch (Exception $e) {
+            $this->session->set_userdata('errormsg', 'Ocorreu um erro na exclusão!');
+        }
+        redirect('/mostruario');
     }
+
     public function add_imagem() {
         $id_mostruario = $this->uri->segment(3);
 //        $produto = $this->produto_model->buscarId($id_produto);
@@ -182,4 +199,5 @@ class Mostruario extends CI_Controller{
         }
         redirect("/mostruario/add_imagem/$imagem->id_mostruario");
     }
+
 }

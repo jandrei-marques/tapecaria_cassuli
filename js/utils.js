@@ -16,9 +16,6 @@ $(document).ready(function(){
     $(".fone").mask("+55(99)9999-9999");
     $(".celular").mask("+55(99)9999-9999");
     
-    $(".valor").maskMoney({symbol:"R$ ",decimal:",",thousands:".",allowNegative:false,defaultZero:false});
-    $(".mensalidade").maskMoney({symbol:"R$ ",decimal:",",thousands:".",allowNegative:false,defaultZero:false});
-    
     $(".btnSave").button({icons:{primary:'ui-icon-check'} });
     $(".btnClose").button({icons:{primary:'ui-icon-closethick'} });
     $(".btnPagar").button({icons:{primary:'ui-icon-circle-check'} });

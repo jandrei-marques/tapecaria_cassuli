@@ -4,8 +4,11 @@ class Produto extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('produto_model', 'usuario_model', 'comentario_model', 'fornecedor_model', 'imagem_model'));
+        $this->load->model(array('produto_model', 'usuario_model', 'comentario_model', 'fornecedor_model', 'imagem_model','current_user'));
         date_default_timezone_set('America/Sao_paulo');
+        if(!$this->current_user->isAdmin()){
+            redirect('/login');
+        }
     }
 
     public function index() {
@@ -65,7 +68,20 @@ class Produto extends CI_Controller {
 
     public function excluir() {
         $id = $this->uri->segment(3);
-        $this->produto_model->apagar($id);
+        $images = $this->imagem_model->buscarImgProduto($id);
+        try {
+
+            if (is_array($images)) {
+                foreach ($images as $img) {
+                    $this->imagem_model->excluirImgPro($img->id_imagem);
+                    unlink($img->url);
+                }
+            }
+            $this->produto_model->apagar($id);
+            $this->session->set_userdata('successmsg', 'Produto excluído com sucesso!');
+        } catch (Exception $e) {
+            $this->session->set_userdata('errormsg', 'Ocorreu um erro na exclusão!');
+        }
         redirect('/produto');
     }
 

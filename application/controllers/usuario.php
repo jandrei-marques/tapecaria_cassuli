@@ -6,8 +6,11 @@ class Usuario extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array("usuario_model", "imagem_model"));
+        $this->load->model(array("usuario_model", "imagem_model","current_user"));
         date_default_timezone_set("America/Sao_paulo");
+        if(!$this->current_user->isAdmin()){
+            redirect('/login');
+        }
     }
 
     public function index() {
@@ -24,8 +27,8 @@ class Usuario extends CI_Controller {
         $isUploaded = true;
         if (!$this->upload->do_upload()) {
             $isUploaded = false;
-            $this->session->set_userdata('errorsmsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
-            redirect('/usuario');
+//            $this->session->set_userdata('errormsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
+//            redirect('/usuario');
         }
         if ($isUploaded) {
             $upload = $this->upload->data();
@@ -48,7 +51,7 @@ class Usuario extends CI_Controller {
                 "endereco" => strip_tags($this->input->post("endereco")),
                 "dt_ultimoacesso" => date("Y-m-d H:i:s"),
                 "login" => strip_tags($this->input->post("login")),
-                "senha" => strip_tags($this->input->post("senha")),
+                "senha" => md5($this->input->post("senha")),
                 "celular" => strip_tags($this->input->post("celular")),
                 "created_at" => date("Y-m-d H:i:s"),
                 "email" => strip_tags($this->input->post("email")),
@@ -61,7 +64,7 @@ class Usuario extends CI_Controller {
                 "endereco" => strip_tags($this->input->post("endereco")),
                 "dt_ultimoacesso" => date("Y-m-d H:i:s"),
                 "login" => strip_tags($this->input->post("login")),
-                "senha" => strip_tags($this->input->post("senha")),
+                "senha" => md5($this->input->post("senha")),
                 "celular" => strip_tags($this->input->post("celular")),
                 "created_at" => date("Y-m-d H:i:s"),
                 "email" => strip_tags($this->input->post("email"))
@@ -90,8 +93,8 @@ class Usuario extends CI_Controller {
         $isUploaded = TRUE;
         if (!$this->upload->do_upload()) {
             $isUploaded = FALSE;
-            $this->session->set_userdata('errorsmsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
-            redirect('/usuario');
+//            $this->session->set_userdata('errorsmsg', 'Erro ao enviar imagem! Envie somente imagens no formato GIF,JPG ou JPEG');
+//            redirect('/usuario');
         }
         if ($isUploaded) {
             $user = $this->usuario_model->buscarId($id);
@@ -118,7 +121,7 @@ class Usuario extends CI_Controller {
                 "endereco" => strip_tags($this->input->post("endereco")),
                 "dt_ultimoacesso" => date("Y-m-d H:i:s"),
                 "login" => strip_tags($this->input->post("login")),
-                "senha" => strip_tags($this->input->post("senha")),
+                "senha" => md5($this->input->post("senha")),
                 "celular" => strip_tags($this->input->post("celular")),
                 "updated_at" => date("Y-m-d H:i:s"),
                 "email" => strip_tags($this->input->post("email")),
@@ -131,7 +134,7 @@ class Usuario extends CI_Controller {
                 "endereco" => strip_tags($this->input->post("endereco")),
                 "dt_ultimoacesso" => date("Y-m-d H:i:s"),
                 "login" => strip_tags($this->input->post("login")),
-                "senha" => strip_tags($this->input->post("senha")),
+                "senha" => md5($this->input->post("senha")),
                 "celular" => strip_tags($this->input->post("celular")),
                 "updated_at" => date("Y-m-d H:i:s"),
                 "email" => strip_tags($this->input->post("email"))

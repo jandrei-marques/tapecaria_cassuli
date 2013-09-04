@@ -4,7 +4,7 @@
     <table
         <tr>
             <td>
-                <label>Nome: </label>
+                <label>Nome: </label>   
             </td>
             <td>
                 <input name="nome" type="text" class="form-control" value="<?= isset($usuario) ? $usuario->nome : '' ?>" required>

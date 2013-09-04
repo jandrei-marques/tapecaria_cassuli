@@ -13,6 +13,8 @@ $(document).ready(function() {
     $(".btnCancelar").button({icons: {primary: 'ui-icon-circle-close'}});
     $(".btnAdd").button({icons: {primary: 'ui-icon-plus'}});
 
+//    $(document).tooltip({});
+
     $(".dialog-form").dialog({
         autoOpen: false,
         height: 430,

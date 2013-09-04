@@ -4,14 +4,20 @@ class Produto extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('produto_model', 'usuario_model', 'comentario_model', 'fornecedor_model', 'imagem_model','current_user'));
+        $this->load->model(array('produto_model', 'usuario_model', 'comentario_model', 'fornecedor_model', 'imagem_model', 'current_user'));
         date_default_timezone_set('America/Sao_paulo');
-        if(!$this->current_user->isAdmin()){
-            redirect('/login');
-        }
     }
 
     public function index() {
+        $produtos = $this->produto_model->buscarTodos();
+        $data['produtos'] = $produtos;
+        $this->load->view('externo/produtos', $data);
+    }
+
+    public function novo() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $data['op'] = 'salvar';
         $data['produtos'] = $this->produto_model->buscarTodos();
         $fornecedor = $this->fornecedor_model->buscarTodos();
@@ -26,6 +32,9 @@ class Produto extends CI_Controller {
     }
 
     public function salvar() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $produto = array(
             'nome' => $this->input->post('nome'),
             'descricao' => $this->input->post('descricao'),
@@ -34,10 +43,13 @@ class Produto extends CI_Controller {
             'created_at' => date("Y-m-d H:i:s")
         );
         $this->produto_model->salvar($produto);
-        redirect('/produto');
+        redirect('/produto/novo');
     }
 
     public function editar() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->uri->segment(3);
         $data['produto'] = $this->produto_model->buscarId($id);
         $data['produtos'] = $this->produto_model->buscarTodos();
@@ -54,6 +66,9 @@ class Produto extends CI_Controller {
     }
 
     public function atualizar() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->input->post('id');
         $produto = array(
             'nome' => $this->input->post('nome'),
@@ -63,10 +78,13 @@ class Produto extends CI_Controller {
             'updated_at' => date("Y-m-d H:i:s")
         );
         $this->produto_model->atualizar($id, $produto);
-        redirect('/produto');
+        redirect('/produto/novo');
     }
 
     public function excluir() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->uri->segment(3);
         $images = $this->imagem_model->buscarImgProduto($id);
         try {
@@ -82,10 +100,13 @@ class Produto extends CI_Controller {
         } catch (Exception $e) {
             $this->session->set_userdata('errormsg', 'Ocorreu um erro na exclusão!');
         }
-        redirect('/produto');
+        redirect('/produto/novo');
     }
 
     public function add_imagem() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id_produto = $this->uri->segment(3);
 //        $produto = $this->produto_model->buscarId($id_produto);
         $imagens = $this->imagem_model->buscarImgProduto($id_produto);
@@ -96,6 +117,9 @@ class Produto extends CI_Controller {
     }
 
     public function save_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $config['upload_path'] = 'uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -140,6 +164,9 @@ class Produto extends CI_Controller {
     }
 
     public function editar_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->uri->segment(3);
         $img_pro = $this->imagem_model->buscarProImg($id);
         $data['produto'] = $img_pro->id_produto;
@@ -150,6 +177,9 @@ class Produto extends CI_Controller {
     }
 
     public function atualizar_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $config['upload_path'] = 'uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -199,6 +229,9 @@ class Produto extends CI_Controller {
     }
 
     public function excluir_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id_img = $this->uri->segment(3);
         $imagem = $this->imagem_model->buscarProImg($id_img);
         try {

@@ -14,9 +14,9 @@
           <script src="<?= base_url() ?>css/bootstrap/assets/js/html5shiv.js"></script>
           <script src="<?= base_url() ?>css/bootstrap/assets/js/respond.min.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="<?= base_url() ?>bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-ui-1.10.2.custom.min.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/jquery.noty.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/themes/default.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/layouts/top.js"></script>

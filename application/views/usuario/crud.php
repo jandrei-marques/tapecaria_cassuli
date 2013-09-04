@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <section class="container">
     <?
-    echo form_open_multipart("usuario/" . $op);
+    echo form_open_multipart("usuario/" . $op,'id="formUsuario"');
     if (isset($usuario)) {
         echo form_hidden("id", $usuario->id);
     }
@@ -23,7 +23,7 @@
                     <label>Cpf:</label>
                 </td>
                 <td>
-                    <input name="cpf" type="text" value="<?= isset($usuario) ? $usuario->cpf : '' ?>" required>
+                    <input name="cpf" type="text" id="cpf" value="<?= isset($usuario) ? $usuario->cpf : '' ?>" required>
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,7 @@
                     <label>Telefone:</label>
                 </td>
                 <td>
-                    <input type="tel" name="telefone" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" />
+                    <input type="tel" name="telefone" id="fone" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" />
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                     <label>Celular: </label>
                 </td>
                 <td>
-                    <input type="tel" name="celular" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" />
+                    <input type="tel" name="celular" id="celular" value="<?= isset($usuario) ? $usuario->telefone : '' ?>" />
                 </td>
             </tr>
             <tr>
@@ -71,7 +71,7 @@
                     <label>Senha:</label>
                 </td>
                 <td>
-                    <input type="password" name="senha" value="" required />
+                    <input type="password" name="senha" id="senha" value="" required />
                 </td>
             </tr>
             <tr>
@@ -79,7 +79,7 @@
                     <label>Confirmação de Senha:</label>
                 </td>
                 <td>
-                    <input type="password" name="confirmacaosenha" value="" required />
+                    <input type="password" name="confirmacaosenha" id="confirmacaosenha" value="" required />
                 </td>
             </tr>
             <tr>

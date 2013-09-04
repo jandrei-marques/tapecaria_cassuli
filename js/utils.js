@@ -1,31 +1,19 @@
-function openModal(id){  
-    $( "#"+id ).dialog( "open" );
+function openModal(id) {
+    $("#" + id).dialog("open");
 }
 
-function printDiv(printdivname){
-    var newstr = document.getElementById(printdivname).innerHTML;
-    var oldstr = document.getElementById('te').innerHTML;
-    document.body.innerHTML = newstr;
-    window.print();
-    document.body.innerHTML = oldstr;
-//return false;
-}
+$(document).ready(function() {
+    $("#cpf").mask("999.999.999-99");
+    $("#cnpj").mask("99.999.999/9999-99");
+    $("#fone").mask("+55(99)9999-9999");
+    $("#celular").mask("+55(99)9999-9999");
 
-$(document).ready(function(){    
-    $(".cpf").mask("999.999.999-99");
-    $(".fone").mask("+55(99)9999-9999");
-    $(".celular").mask("+55(99)9999-9999");
-    
-    $(".btnSave").button({icons:{primary:'ui-icon-check'} });
-    $(".btnClose").button({icons:{primary:'ui-icon-closethick'} });
-    $(".btnPagar").button({icons:{primary:'ui-icon-circle-check'} });
-    $(".btnCancelar").button({icons:{primary:'ui-icon-circle-close'} });
-    $(".btnAdd").button({icons:{primary:'ui-icon-plus'} });
-    $(".btnImprimir").button({icons:{primary:'ui-icon-print'} });
-    $(".btnContrato").button({icons:{primary:'ui-icon-script'} });
-    $(" .tabs ").tabs({active: 1});
-    $(" .tabsConta ").tabs();
-    $( ".dialog-form" ).dialog({
+    $(".btnSave").button({icons: {primary: 'ui-icon-check'}});
+    $(".btnClose").button({icons: {primary: 'ui-icon-closethick'}});
+    $(".btnCancelar").button({icons: {primary: 'ui-icon-circle-close'}});
+    $(".btnAdd").button({icons: {primary: 'ui-icon-plus'}});
+
+    $(".dialog-form").dialog({
         autoOpen: false,
         height: 430,
         width: 500,
@@ -35,72 +23,60 @@ $(document).ready(function(){
         buttons: {
         }
     });
-    $( ".dialog-form-sms" ).dialog({
-        autoOpen: false,
-        height: 320,
-        width: 500,
-        resizable: false,
-        closeText: "Sair",
-        modal: true,
-        buttons: {
-        }
-    });
-    $( ".dialog-form-contrato" ).dialog({
-        autoOpen: false,
-        height: 670,
-        width: 700,
-        resizable: false,
-        closeText: "Sair",
-        modal: true,
-        buttons: {
+    $("#formUsuario").validate({
+        errorElement: "error",
+        wrapper: "error",
+        rules: {
+            senha: {
+                required: true,
+                minlength: 8
+            },
+            confirmacaosenha: {
+                required: true,
+                minlength: 8,
+                equalTo: "#senha"
+            }
+        },
+        messages: {
+            senha: {
+                required: "Informe uma senha",
+                minlength: "Mínimo 8 caracteres"
+            },
+            confirmacaosenha: {
+                required: "Informe uma senha",
+                minlength: "A senha deve conter no mínimo 8 caracteres",
+                equalTo: "Senhas diferentes. Verifique!"
+            }
         }
     });
 });
 
-function somenteNumero(e){
-    var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla >47 && tecla <58)) 
+function somenteNumero(e) {
+    var tecla = (window.event) ? event.keyCode : e.which;
+    if ((tecla > 47 && tecla < 58))
         return true;
-    else{
-        if(tecla !=8 && tecla != 0) 
+    else {
+        if (tecla != 8 && tecla != 0)
             return false;
-                else 
-                    return true;
-        }	
+        else
+            return true;
+    }
 }
 
-function validate(id){
-    if($(id).val() == 0){        
-        id.style.border= "1px solid red";
+function validate(id) {
+    if ($(id).val() == 0) {
+        id.style.border = "1px solid red";
         id.focus();
         alert("Selecione uma opção!");
         return false;
     }
     return true;
 }
-function submitFormConfirm(form, valor){
+function submitFormConfirm(form, valor) {
     decisao = confirm(valor);
-    if (decisao){
+    if (decisao) {
         return document.forms[form].submit();
         return true;
     }
     return false;
-}
-
-function validateVariation(){
-    if(document.getElementById('bonus').checked == true){
-        document.getElementById('dataPagamento').disabled = true;
-        document.getElementById("valorPagamento").disabled = true;         
-    }else {
-        document.getElementById('dataPagamento').disabled = false;
-        document.getElementById("valorPagamento").disabled = false;           
-    }
-}
-
-function validaPagto(){
-    if(document.getElementById('pago').checked == true){
-        document.getElementById('dataPgto').disabled = true;
-    }else{
-        document.getElementById('dataPgto').disabled = false;
-    }
 }

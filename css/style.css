@@ -42,32 +42,6 @@ legend{font-weight: bold; font-size: 16px; }
 .listAll tbody tr:hover{background-color: #FFF8DC; border-left: 1px solid #EFEFEF; padding-left: 2px; text-shadow: 0 0  3px #ccc; font-weight: bold; cursor: pointer;}
 .configAlert{font-size: 14px; font-family: Tahoma, sans-serif; padding: 0.3%;}
 .posicionaAlert{float:left; margin-right: 10px;}
-.dialog-form{font-family: Tahoma, sans-serif; font-size: 12px;font-weight: bold;}
-.dialog-form input[type=text] { font-size: 12px; height: 24px; width: 96%;}
-.dialog-form input[type=date] { font-size: 12px; height: 24px; width: 96%;}
-.dialog-form textarea {font-size: 12px; height: 120px; width: 96%; resize: none}
-.dialog-form table{width: 100%;}
-.dialog-form table tr{height: 30px;}
-.dialog-form span{font-size: 16px;}
-.dialog-form span[name='valorParcela']{color: green;}
-.dialog-form span[name='carenciaParcela']{color: blue;}
-.dialog-form span[name='vencimentoParcela']{color: blue;}
-.dialog-form span[name='valorParcelaC']{color: green;}
-.dialog-form span[name='carenciaParcelaC']{color: blue;}
-.dialog-form span[name='vencimentoParcelaC']{color: blue;}
-.dialog-form span{font-size: 16px;}
-.dialog-form-sms{font-family: Tahoma, sans-serif; font-size: 12px;font-weight: bold;}
-.dialog-form-sms input[type=text] { font-size: 12px; height: 24px; width: 96%;}
-.dialog-form-sms input[type=date] { font-size: 12px; height: 24px; width: 96%;}
-.dialog-form-sms select {font-size: 12px; height: 24px; width: 96%;}
-.dialog-form-sms span[name='quantidadeSms']{color: blue;}
-.dialog-form-sms span[name='precoTotal']{color: green;}
-.dialog-form-sms span[name='precoSms']{color: green;}
-.dialog-form-sms textarea {font-size: 12px; height: 120px; width: 96%; resize: none}
-.dialog-form-sms table{width: 100%;}
-.dialog-form-sms table tr{height: 30px;}
-.dialog-form-sms span{font-size: 16px;}
-#detalhesconta table label{font-size: 14px; font-family: Tahoma, sans-serif;}
 
 
 .texto {
@@ -78,27 +52,4 @@ legend{font-weight: bold; font-size: 16px; }
     padding-left: 15px;
     line-height: 18px;
     margin-top: 10px;
-}
-
-#clausulas{
-    font-family: Tahoma, sans-serif;
-    font-size: 14px;
-    margin-top: 12px;
-    margin-bottom: 2px;
-    font-weight: bold;
-    line-height: 16px;
-}
-.pclausula{
-    margin-left: 30px;
-    margin-right: 20px;
-    font-family: Tahoma, sans-serif;
-    font-size: 12px;
-    text-align: justify;
-}
-.psclausula{
-    margin-left: 60px;
-    margin-right: 20px;
-    font-family: Tahoma, sans-serif;
-    font-size: 12px;
-    text-align: justify;
 }

@@ -9,6 +9,7 @@
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-ui-1.10.2.custom.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/utils.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>js/jquery-validate.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/jquery.noty.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/themes/default.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/layouts/top.js"></script>

@@ -3,19 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/produto/add_image.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/controllers/usuario.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/home_admin.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/controllers/produto.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/mostruario/add_image.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/mostruario/crud.php</file>
+            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/externo/detalhesproduto.php</file>
+            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/css/bootstrap/css/bootstrap.css</file>
+            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/externo/produtos.php</file>
+            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/js/gallery/css/jquery.galleryview-3.0-dev.css</file>
             <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/css/style.css</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/fornecedor/crud.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/controllers/mostruario.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/usuario/crud.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/models/mostruario_model.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/produto/crud.php</file>
-            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/models/imagem_model.php</file>
+            <file>file:/C:/Users/Jandrei/Documents/GitHub/tapecaria_cassuli/application/views/home.php</file>
         </group>
     </open-files>
 </project-private>

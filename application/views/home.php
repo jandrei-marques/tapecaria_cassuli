@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--<link rel="shortcut icon" href="<?= base_url() ?>css/bootstrap/assets/ico/favicon.png">-->
-        <title>Static Top Navbar Example for Bootstrap</title>
+        <title>Tapeçaria Cassuli</title>
         <!-- Bootstrap core CSS -->
         <link href="<?= base_url() ?>css/bootstrap/css/bootstrap.css" rel="stylesheet">
         <!-- Custom styles for this template -->
@@ -16,7 +16,8 @@
         <![endif]-->
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-1.9.0.min.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/jquery-ui-1.10.2.custom.min.js"></script>
-        <script type="text/javascript" src="<?= base_url() ?>bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>css/bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="<?= base_url() ?>css/bootstrap/js/tooltip.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/jquery.noty.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/themes/default.js"></script>
         <script type="text/javascript" src="<?= base_url() ?>js/noty/layouts/top.js"></script>

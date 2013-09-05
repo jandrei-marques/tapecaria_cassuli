@@ -13,6 +13,17 @@ class Produto extends CI_Controller {
         $data['produtos'] = $produtos;
         $this->load->view('externo/produtos', $data);
     }
+    
+    public function detalhes(){
+        $id = $this->uri->segment(3);
+        $produto = $this->produto_model->buscarId($id);
+        $imagens = $this->imagem_model->buscarImgProduto($id);
+        $usuario = $this->current_user->user();
+        $data['produto'] = $produto;
+        $data['imagens'] = $imagens;
+        $data['usuario'] = $usuario;
+        $this->load->view("externo/detalhesproduto",$data);
+    }
 
     public function novo() {
         if (!$this->current_user->isAdmin()) {

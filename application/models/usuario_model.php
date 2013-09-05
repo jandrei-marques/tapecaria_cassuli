@@ -23,8 +23,15 @@ class Usuario_model extends CI_Model {
     }
 
     public function buscarTodos() {
+        $this->db->where('admin',0);
+        $this->db->or_where('admin',null);
         $this->db->order_by("nome", "asc");
         return $this->db->get($this->table)->result();
+    }
+        public function getAdmin($id){
+        $this->db->where("id",$id);
+        $this->db->where("admin",1);
+        return $this->db->get($this->table)->row();
     }
 
     public function buscarId($id) {

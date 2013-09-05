@@ -19,10 +19,10 @@
     </div>
     <div>
         <fieldset>
-            <legend>Informações sobre o produto</legend>
-            <?=$produto->nome?><br />
+            <legend>Informações sobre o item de mostruário</legend>
             <?=$produto->descricao?><br />
-            <?=$produto->valor?><br/>
+            <?=$produto->Observacao?><br />
+            <?=$produto->vlr_unit?><br/>
         </fieldset>
     </div>
 </div>

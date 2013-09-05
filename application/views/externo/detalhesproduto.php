@@ -19,10 +19,14 @@
     </div>
     <div>
         <fieldset>
-            <legend>Informações sobre o item de mostruário</legend>
+            <legend>Informações sobre o produto</legend>
+            <?=$produto->nome?><br />
             <?=$produto->descricao?><br />
-            <?=$produto->Observacao?><br />
-            <?=$produto->vlr_unit?><br/>
+            <?=$produto->valor?><br/>
         </fieldset>
     </div>
+    <? if($usuario){ ?>
+        <?=  form_open('produto/comentario');?>
+        <?= form_textarea('comentario','');?>
+    <? } ?>
 </div>

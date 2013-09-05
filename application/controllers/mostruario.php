@@ -4,20 +4,40 @@ class Mostruario extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model(array('mostruario_model', 'usuario_model', 'imagem_model','current_user'));
+        $this->load->model(array('mostruario_model', 'usuario_model', 'imagem_model', 'current_user'));
         date_default_timezone_set('America/Sao_paulo');
-        if(!$this->current_user->isAdmin()){
-            redirect('/login');
-        }
     }
 
     public function index() {
+        $produtos = $this->mostruario_model->buscarTodos();
+        $data['produtos'] = $produtos;
+        $this->load->view('externo/mostruario', $data);
+    }
+
+    public function detalhes() {
+        $id = $this->uri->segment(3);
+        $produto = $this->mostruario_model->buscarId($id);
+        $imagens = $this->imagem_model->buscarImgMostruario($id);
+        $usuario = $this->current_user->user();
+        $data['produto'] = $produto;
+        $data['imagens'] = $imagens;
+        $data['usuario'] = $usuario;
+        $this->load->view("externo/detalhesmostruario", $data);
+    }
+
+    public function novo() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $data['op'] = 'salvar';
         $data['mostruarios'] = $this->mostruario_model->buscarTodos();
         $this->load->view('mostruario/crud', $data);
     }
 
     public function salvar() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $mostruario = array(
             'descricao' => strip_tags($this->input->post('descricao')),
             'vlr_unit' => strip_tags($this->input->post('vlr_unit')),
@@ -29,10 +49,13 @@ class Mostruario extends CI_Controller {
         );
         $this->mostruario_model->salvar($mostruario);
         $this->session->set_userdata('successmsg', 'Mostruário cadastrado com sucesso!');
-        redirect('/mostruario');
+        redirect('/mostruario/novo');
     }
 
     public function editar() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->uri->segment(3);
         $data['mostruario'] = $this->mostruario_model->buscarId($id);
         $data['mostruarios'] = $this->mostruario_model->buscarTodos();
@@ -41,6 +64,9 @@ class Mostruario extends CI_Controller {
     }
 
     public function atualizar() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->input->post('id');
         $mostruario = array(
             'descricao' => strip_tags($this->input->post('descricao')),
@@ -53,10 +79,13 @@ class Mostruario extends CI_Controller {
         );
         $this->mostruario_model->atualizar($id, $mostruario);
         $this->session->set_userdata('successmsg', 'Mostruário atualizado com sucesso!');
-        redirect('/mostruario');
+        redirect('/mostruario/novo');
     }
 
     public function excluir() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->uri->segment(3);
         $images = $this->imagem_model->buscarImgMostruario($id);
         try {
@@ -71,10 +100,13 @@ class Mostruario extends CI_Controller {
         } catch (Exception $e) {
             $this->session->set_userdata('errormsg', 'Ocorreu um erro na exclusão!');
         }
-        redirect('/mostruario');
+        redirect('/mostruario/novo');
     }
 
     public function add_imagem() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id_mostruario = $this->uri->segment(3);
 //        $produto = $this->produto_model->buscarId($id_produto);
         $imagens = $this->imagem_model->buscarImgMostruario($id_mostruario);
@@ -85,6 +117,9 @@ class Mostruario extends CI_Controller {
     }
 
     public function save_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $config['upload_path'] = 'uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -129,6 +164,9 @@ class Mostruario extends CI_Controller {
     }
 
     public function editar_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id = $this->uri->segment(3);
         $img_mos = $this->imagem_model->buscarMosImg($id);
         $data['mostruario'] = $img_mos->id_mostruario;
@@ -139,6 +177,9 @@ class Mostruario extends CI_Controller {
     }
 
     public function atualizar_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $config['upload_path'] = 'uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -188,6 +229,9 @@ class Mostruario extends CI_Controller {
     }
 
     public function excluir_img() {
+        if (!$this->current_user->isAdmin()) {
+            redirect('/login');
+        }
         $id_img = $this->uri->segment(3);
         $imagem = $this->imagem_model->buscarMosImg($id_img);
         try {

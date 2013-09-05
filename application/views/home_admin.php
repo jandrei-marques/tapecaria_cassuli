@@ -59,7 +59,7 @@
                     <ul>
                         <li><a href="<?= base_url() ?>usuario">Usuários</a></li>
                         <li><a href="<?= base_url() ?>fornecedor">Fornecedores</a></li>
-                        <li><a href="<?= base_url() ?>mostruario">Mostruário</a></li>
+                        <li><a href="<?= base_url() ?>mostruario/novo">Mostruário</a></li>
                         <li><a href="<?= base_url() ?>produto/novo">Produtos</a></li>
                         <!--<li><a href="<?= base_url() ?>vencimentos">Venc. do dia</a></li>-->
                         <li><a href="<?= base_url() ?>login/logout">Logout</a></li>

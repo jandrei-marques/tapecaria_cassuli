@@ -27,6 +27,8 @@
     </div>
     <? if($usuario){ ?>
         <?=  form_open('produto/comentario');?>
-        <?= form_textarea('comentario','');?>
+    <label>Comentário</label><br />
+    <input type="text" name="comentario" style="width: 800px"/><br />
+    <button type="submit" class="btn-success">Enviar Comentário</button>
     <? } ?>
 </div>
